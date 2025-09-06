@@ -1,5 +1,7 @@
 package otus.homework.coroutines
 
+import otus.homework.coroutines.services.CatsService
+import otus.homework.coroutines.services.PictureService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

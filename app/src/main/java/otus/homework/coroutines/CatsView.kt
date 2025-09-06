@@ -9,21 +9,14 @@ import android.widget.Toast
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.squareup.picasso.Picasso
+import otus.homework.coroutines.data.Info
+import otus.homework.coroutines.data.Result
 
 class CatsView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr), ICatsView {
-
-    var presenter :CatsPresenter? = null
-
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        findViewById<Button>(R.id.button).setOnClickListener {
-            presenter?.onInitComplete()
-        }
-    }
 
     override fun setOnClickListener(p0: View.OnClickListener?) {
         findViewById<Button>(R.id.button).setOnClickListener(p0)
@@ -36,6 +29,13 @@ class CatsView @JvmOverloads constructor(
         }
     }
 
+    override fun populate(data: Result) {
+        when (data) {
+            is Result.Success -> populate(data.data)
+            is Result.Error -> showErrorMessage(data.message)
+        }
+    }
+
     override fun showErrorMessage(message: String?) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 
@@ -44,5 +44,6 @@ class CatsView @JvmOverloads constructor(
 
 interface ICatsView {
     fun showErrorMessage(message: String?)
+    fun populate(data: Result)
     fun populate(data: Info)
 }

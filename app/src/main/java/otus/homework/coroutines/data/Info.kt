@@ -1,4 +1,4 @@
-package otus.homework.coroutines
+package otus.homework.coroutines.data
 
 data class Info(
     var fact: String,

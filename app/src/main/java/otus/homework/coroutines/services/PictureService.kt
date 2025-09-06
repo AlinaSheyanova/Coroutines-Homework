@@ -1,5 +1,6 @@
-package otus.homework.coroutines
+package otus.homework.coroutines.services
 
+import otus.homework.coroutines.data.Picture
 import retrofit2.Response
 import retrofit2.http.GET
 
